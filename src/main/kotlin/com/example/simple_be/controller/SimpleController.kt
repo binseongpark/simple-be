@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RestController
 class SimpleController {
     @GetMapping("/pong")
     fun getPong(): String {
-        return "pong 🏓🏓🏓"
+        return "pong 🏓 pong 🏓"
     }
 }
