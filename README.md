@@ -1,1 +1,17 @@
-# simple-be
+apiVersion: skaffold/v4beta1
+kind: Config
+
+build:
+local:
+push: true
+platforms: ["linux/amd64", "linux/arm64"]
+artifacts:
+- image: lemonbin/simple-be
+jib:
+fromImage: eclipse-temurin:21.0.9_10-jre-alpine-3.23
+
+# 배포 설정
+manifests:
+rawYaml:
+- deployment/app.yml
+- deployment/ingress.yml

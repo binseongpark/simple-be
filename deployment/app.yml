@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-be
+  namespace: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simple-be
+  template:
+    metadata:
+      labels:
+        app: simple-be
+    spec:
+      containers:
+        - name: simple-be
+          image: lemonbin/simple-be
+          ports:
+            - containerPort: 8081
+              name: simple-be
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: simple-be
+  namespace: backend
+spec:
+  type: ClusterIP
+  selector:
+    app: simple-be
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: simple-be

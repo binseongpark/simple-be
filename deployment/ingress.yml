@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: simple-be-ingress
+  namespace: backend
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    # 필요한 경우 추가 설정 (예: 최대 업로드 크기)
+    # nginx.ingress.kubernetes.io/proxy-body-size: "10m"
+spec:
+  rules:
+#    - host: simple-be.local  # 사용하실 도메인 (임시로 지정)
+    - host: simple-be.192.168.41.32.sslip.io  # 사용하실 도메인 (임시로 지정)
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: simple-be
+                port:
+                  number: 80

@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: simple-be
+
+server:
+  port: 8081
